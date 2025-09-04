@@ -101,7 +101,7 @@ return(0);
 *******************************************************************************/
 
 #define REFSPECTRA1 "stokes-neutral-iso-UNPOL-torus.fits" // UNPOLARISED
-#define REFSPECTRA2 "stokes-neutral-iso-VRPOL-torus.fits" // HORIZONTALLY POLARISED
+#define REFSPECTRA2 "stokes-neutral-iso-HRPOL-torus.fits" // HORIZONTALLY POLARISED
 #define REFSPECTRA3 "stokes-neutral-iso-45DEG-torus.fits" // DIAGONALLY POLARISED
 #define VISIBILITY_FILE "visibility_line.txt" // Text file containing Theta_limit
 #define MAX_SIZE 40000  // Size of the visibility line text file
@@ -214,15 +214,15 @@ if(stokes){//we use polarised tables
     for(j=0; j<=2; j++) Smatrix[j+6][ie] -= Smatrix[j][ie];
 
     far[ie] = Smatrix[0][ie] +
-                  pol_deg * ( Smatrix[3][ie] * cos(2.*(chi)) +
-                              Smatrix[6][ie] * sin(2.*(chi)) );
+                        pol_deg * ( -Smatrix[3][ie] * cos(2.*(chi)) +
+                                    Smatrix[6][ie] * sin(2.*(chi)) );
     qar[ie] = Smatrix[1][ie] +
-                  pol_deg * ( Smatrix[4][ie] * cos(2.*(chi))+
-                              Smatrix[7][ie] * sin(2.*(chi)) );
+                        pol_deg * ( -Smatrix[4][ie] * cos(2.*(chi))+
+                                    Smatrix[7][ie] * sin(2.*(chi)) );
     uar[ie] = Smatrix[2][ie] +
-                  pol_deg * ( Smatrix[5][ie] * cos(2.*(chi))+
-                              Smatrix[8][ie] * sin(2.*(chi)) );
-    var[ie] = 0.;
+                        pol_deg * ( -Smatrix[5][ie] * cos(2.*(chi))+
+                                    Smatrix[8][ie] * sin(2.*(chi)) );
+    var[ie] = 0.;   
                               
     // far[ie] = ( 1. + pol_deg ) * Smatrix[0][ie] - pol_deg * Smatrix[3][ie];
     // qar[ie] = ( 1. + pol_deg ) * Smatrix[1][ie] - pol_deg * Smatrix[4][ie];
@@ -256,7 +256,7 @@ if(stokes){//we use polarised tables
 status = 0;
 
 
-file = fopen(VISIBILITY_FILE, "rt");
+file = fopen(visibility_path, "rt");
 if (file == NULL) {
 perror("Error opening file");
 return -1;
