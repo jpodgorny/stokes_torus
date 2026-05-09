@@ -10,7 +10,7 @@ of incident polarisation and this model interpolates for any primary
 polarisation state. In addition it possesses other properties of the
 reprocessing tables that were precomputed for nearly neutral disc reflection.
 
-In this case of xsstokes_torus, it is reflection from a toroidal structure,
+In this case of stokes_torus, it is reflection from a toroidal structure,
 representing an opaque AGN torus illuminated by a central hot X-ray corona.
 More details on the reflection model that was computed using the routine
 torus_integrator.py are given in Podgorný J. et al. (2024). Apart from
@@ -24,7 +24,7 @@ are taken into account. All components are static. The central source
 is an isotropic point-like emission. The output has arbitrary flux
 normalization.
 
-For any issues regarding the use of xsstokes_torus, please, contact J. Podgorný at 
+For any issues regarding the use of stokes_torus, please, contact J. Podgorný at 
 jakub.podgorny@asu.cas.cz or M. Dovčiak at michal.dovciak@asu.cas.cz.
 
 
@@ -124,11 +124,11 @@ Installation and usage in XSPEC
 -------------------------------
 
 1. Download the source code files
-   into a directory where you want to install the model, e.g. '/path/to/xsstokes_torus-master/'
+   into a directory where you want to install the model, e.g. '/path/to/stokes_torus-master/'
 
 2. Download the FITS files 
    23576493.zip (https://doi.org/10.6084/m9.figshare.23576493) 
-   with the tables into the directory with xsstokes_torus, i.e. '/path/to/xsstokes_torus-master'.
+   with the tables into the directory with stokes_torus, i.e. '/path/to/stokes_torus-master'.
 
 3. Unzip the reflection tables with polarisation information, e.g. by the command:
 
@@ -138,24 +138,24 @@ Installation and usage in XSPEC
 
    The code is compiled inside XSPEC with the following command (assuming all 
    the source files and FITS tables are in the directory 
-   '/path/to/xsstokes_torus-master'):
+   '/path/to/stokes_torus-master'):
 
-   initpackage stokestorus lmodel-stokestorus.dat /path/to/xsstokes_torus-master
+   initpackage stokestorus lmodel-stokestorus.dat /path/to/stokes_torus-master
 
    Note:
    Your XSPEC installation must have been originally installed from the source 
-   code distribution. Local models, like xsstokes_torus, cannot be used if the XSPEC 
+   code distribution. Local models, like stokes_torus, cannot be used if the XSPEC 
    was originally installed from the pre-compiled binary distribution.
 
-5. Load the xsstokes_torus model into XSPEC:
+5. Load the stokes_torus model into XSPEC:
 
-   To use the xsstokes_torus model inside XSPEC, first the model package needs to be 
-   loaded and also setup a directory containing the xsstokes_torus set:
+   To use the stokes_torus model inside XSPEC, first the model package needs to be 
+   loaded and also setup a directory containing the stokes_torus set:
 
-   lmod stokestorus /path/to/xsstokes_torus-master
-   xset XSDIR /path/to/xsstokes_torus-master
+   lmod stokestorus /path/to/stokes_torus-master
+   xset XSDIR /path/to/stokes_torus-master
 
-6. Then the xsstokes_torus model may be used in the usual way, e.g.:
+6. Then the stokes_torus model may be used in the usual way, e.g.:
 
    mo stokestorus
 
@@ -176,7 +176,7 @@ Viewing the model in XSPEC
 One usually needs to have polarisation data sets loaded for all three stokes
 parameters to view the polarisation properties predicted by a model inside XSPEC.
 The model is then shown in the energy range covered by, and with the energy binning
-of, these data sets. To overcome these disadvantages, the xsstokes_torus model provides
+of, these data sets. To overcome these disadvantages, the stokes_torus model provides
 a parameter (par9) that defines the output of the model, e.g. to show the model
 prediction for the polarisation degree, one needs to set par9 to 5, see Section
 Model parameters. In this case, dummy response may be used
@@ -218,9 +218,9 @@ One can see the model predicted polarisation properties in the following way:
 
    ignore *:**-1.
 
-4. Set xsstokes_torus par9 to -1
+4. Set stokes_torus par9 to -1
 
-   To be able to use the traditional way of using the polarisation data with the model in XSPEC, one needs to set the xsstokes_torus parameter par9 to -1:
+   To be able to use the traditional way of using the polarisation data with the model in XSPEC, one needs to set the stokes_torus parameter par9 to -1:
 
    newpar 9 -1 -1 -1 -1 10 10
 
