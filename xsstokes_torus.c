@@ -1,5 +1,5 @@
-/* xsstokes - polarized reflection from an axially symmetric surface illuminated 
- *	    isotropically by an (un)polarised power law,
+/* stokes_torus - polarized reflection from an axially symmetric surface  
+ *	      illuminated isotropically by an (un)polarised power law,
  *        - an example of a polarisation subroutine for XSPEC using tables 
  *          computed with torus_integrator.py code
  * 
