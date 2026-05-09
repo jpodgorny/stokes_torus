@@ -157,7 +157,7 @@ Installation and usage in XSPEC
 
 6. Then the stokes_torus model may be used in the usual way, e.g.:
 
-   mo stokestorus
+   mo sttorus
 
    Note:
    In case of segmentation fault, one may need to increase the stack size before 
