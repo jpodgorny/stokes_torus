@@ -140,7 +140,7 @@ Installation and usage in XSPEC
    the source files and FITS tables are in the directory 
    '/path/to/stokes_torus-master'):
 
-   initpackage stokestorus lmodel-stokestorus.dat /path/to/stokes_torus-master
+   initpackage sttorus lmodel-sttorus.dat /path/to/stokes_torus-master
 
    Note:
    Your XSPEC installation must have been originally installed from the source 
@@ -152,7 +152,7 @@ Installation and usage in XSPEC
    To use the stokes_torus model inside XSPEC, first the model package needs to be 
    loaded and also setup a directory containing the stokes_torus set:
 
-   lmod stokestorus /path/to/stokes_torus-master
+   lmod sttorus /path/to/stokes_torus-master
    xset XSDIR /path/to/stokes_torus-master
 
 6. Then the stokes_torus model may be used in the usual way, e.g.:
