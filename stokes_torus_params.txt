@@ -114,7 +114,7 @@ Required files
 
 * Source code files
   - xsstokes_torus.c
-  - lmodel-stokesni.dat  
+  - lmodel-sttorus.dat  
 * tables for reprocessing of photons in distant opaque toroidal structure, more details in Podgorný J. et al. (2024)
   - 23576493.zip (https://doi.org/10.6084/m9.figshare.23576493)  
 * Theta limit function
