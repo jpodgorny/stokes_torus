@@ -1,11 +1,26 @@
 Table of contents
 =================
 
+* [Version](#version)
 * [Model description](#model-description)
 * [References](#references)
 * [Model parameters](#model-parameters)
 * [Required files](#required-files)
 * [Installation and usage in XSPEC](#installation-and-usage-in-xspec)
+
+
+Version
+=================
+
+Version 1.1.
+
+This is the original legacy version with nearly neutral reflection after several initial updates.
+
+Works for circular torus only, nearly neutral reflection (xi = 5 erg cm s^(-1)) and has limited features.
+
+Use this release if you need to reproduce results from publications or scripts that used the original model.
+
+New users should normally use v2.0 or later.
 
 
 Model description
