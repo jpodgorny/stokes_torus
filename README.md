@@ -12,11 +12,11 @@ Table of contents
 Version
 =================
 
-Version 1.1.
+Version 1.2.
 
-This is the original legacy version with nearly neutral reflection after several initial updates.
+This is a legacy version with fully neutral (cold) reflection after several initial updates.
 
-Works for circular torus only, nearly neutral reflection (xi = 5 erg cm s^(-1)) and has limited features.
+Works for circular torus only, fully neutral reflection and has limited features.
 
 Use this release if you need to reproduce results from publications or scripts that used the original model.
 
@@ -26,14 +26,14 @@ New users should normally use v2.0 or later.
 Model description
 =================
 
-This model computes the emission and its polarisation properties from
-an X-ray source of power-law emission of arbitrary incident polarisation 
+This 0.2-100 keV model computes the emission and its polarisation properties
+from an X-ray source of power-law emission of arbitrary incident polarisation
 that is reprocessed in axially symmetric structures. The reprocessing
 is precomputed in a form of FITS fits files that are required for
 usage. These files were computed for three different states
 of incident polarisation and this model interpolates for any primary
 polarisation state. In addition it possesses other properties of the
-reprocessing tables that were precomputed for nearly neutral disc reflection.
+reprocessing tables that were precomputed for neutral (cold) disc reflection.
 
 In this case of stokes_torus, it is reflection from a toroidal structure,
 representing an opaque AGN torus illuminated by a central hot X-ray corona.
@@ -113,14 +113,6 @@ Model parameters
     -  8: array of Stokes parameter Q devided by I
     -  9: array of Stokes parameter U devided by I
     - 10: array of Stokes parameter V devided by I
-* **par10 ... norm**
-  - if the distance to the source D [pc] is known, this
-    parameter allows to check consistency of the best-fit value
-    with the expected illuminating total flux from the central
-    source in the equatorial plane at the distance of 1 pc from
-    the center as F_in [erg / cm^2 / s] = 3.98 * 10^(-15) * D^2 * norm,
-    which can be also estimated e.g. with a simultaneously used
-    comptonization model
 
 
 Further output of the model
@@ -143,7 +135,7 @@ Required files
   - lmodel-sttorus.dat  
 * **reprocessing tables**
   (for reprocessing of photons in distant opaque toroidal structure, more details in Podgorný J. et al. (2024))
-  - [23576493.zip](https://doi.org/10.6084/m9.figshare.23576493)  
+  - [32287593.zip](https://doi.org/10.6084/m9.figshare.32287593)
 * **Theta limit function**
   - visbility_line.txt
 
@@ -155,12 +147,12 @@ Installation and usage in XSPEC
    into a directory where you want to install the model, e.g. '/path/to/stokes_torus-master/'
 
 2. **Download the FITS files** 
-   [23576493.zip](https://doi.org/10.6084/m9.figshare.23576493) 
+   [32287593.zip](https://doi.org/10.6084/m9.figshare.32287593)
    with the tables into the directory with stokes_torus, i.e. '/path/to/stokes_torus-master'.
 
 3. **Unzip the reflection tables** with polarisation information, e.g. by the command:
 
-   `unzip 23576493.zip`
+   `unzip 32287593.zip`
    
 4. **Compile the code** inside XSPEC (needed to be done only once):
 
@@ -209,7 +201,7 @@ of, these data sets. To overcome these disadvantages, the stokes_torus model pro
 a parameter (par9) that defines the output of the model, e.g. to show the model
 prediction for the polarisation degree, one needs to set par9 to 5, see Section
 [Model parameters](#model-parameters). In this case, dummy response may be used
-without any data loaded, e.g. `'dummyrsp 1. 100. 200 log'`. Then the model may be
+without any data loaded, e.g. `'dummyrsp 0.2 100. 270 log'`. Then the model may be
 viewed (after it has been loaded in XSPEC) in a usual way using `'plot model'`. Note
 that when showing polarisation degree, angle and normalised Stokes parameters, i.e.
 when par9 is set to 5-10, the normalisation of the model needs to be set to unity!
@@ -246,7 +238,7 @@ One can see the model predicted polarisation properties in the following way:
 
    the fake unit responses will be automatically loaded. For convenience, change also the energy range of the data
 
-   `ignore *:**-1.`
+   `ignore *:**-0.2`
 
 4. **Set stokes_torus par9 to -1**
 

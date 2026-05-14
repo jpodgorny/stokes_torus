@@ -1,5 +1,5 @@
-/* stokes_torus - polarized reflection from an axially symmetric surface  
- *	      illuminated isotropically by an (un)polarised power law,
+/* xsstokes v1.2 - polarized reflection from an axially symmetric cold circular
+ *      torus illuminated isotropically by an (un)polarised power law,
  *        - an example of a polarisation subroutine for XSPEC using tables 
  *          computed with torus_integrator.py code
  * 
@@ -43,13 +43,6 @@
  *                    =  8 - array of Stokes parameter Q devided by I
  *                    =  9 - array of Stokes parameter U devided by I
  *                    = 10 - array of Stokes parameter V devided by I
- * par10 ... norm - if the distance to the source D [pc] is known, this
- *                  parameter allows to check consistency of the best-fit value
- *                  with the expected illuminating total flux from the central
- *                  source in the equatorial plane at the distance of 1 pc from
- *                  the center as F_in [erg / cm^2 / s] = 3.98*10^(-15)*D^2*norm,
- *                  which can be also estimated e.g. with a simultaneously used
- *                  comptonization model
  *
  ******************************************************************************/
 
@@ -64,8 +57,8 @@
 
 #define IFL    1
 #define NPARAM 5
-#define NE     200
-#define E_MIN  1.
+#define NE     270
+#define E_MIN  0.2
 #define E_MAX  100.
 
 int main() {
@@ -101,7 +94,7 @@ return(0);
 *******************************************************************************/
 
 #define REFSPECTRA1 "stokes-neutral-iso-UNPOL-torus.fits" // UNPOLARISED
-#define REFSPECTRA2 "stokes-neutral-iso-HRPOL-torus.fits" // HORIZONTALLY POLARISED
+#define REFSPECTRA2 "stokes-neutral-iso-VRPOL-torus.fits" // VERTICALLY POLARISED
 #define REFSPECTRA3 "stokes-neutral-iso-45DEG-torus.fits" // DIAGONALLY POLARISED
 #define VISIBILITY_FILE "visibility_line.txt" // Text file containing Theta_limit
 #define MAX_SIZE 40000  // Size of the visibility line text file
@@ -214,15 +207,15 @@ if(stokes){//we use polarised tables
     for(j=0; j<=2; j++) Smatrix[j+6][ie] -= Smatrix[j][ie];
 
     far[ie] = Smatrix[0][ie] +
-                        pol_deg * ( -Smatrix[3][ie] * cos(2.*(chi)) +
-                                    Smatrix[6][ie] * sin(2.*(chi)) );
+                  pol_deg * ( Smatrix[3][ie] * cos(2.*(chi)) +
+                              Smatrix[6][ie] * sin(2.*(chi)) );
     qar[ie] = Smatrix[1][ie] +
-                        pol_deg * ( -Smatrix[4][ie] * cos(2.*(chi))+
-                                    Smatrix[7][ie] * sin(2.*(chi)) );
+                  pol_deg * ( Smatrix[4][ie] * cos(2.*(chi))+
+                              Smatrix[7][ie] * sin(2.*(chi)) );
     uar[ie] = Smatrix[2][ie] +
-                        pol_deg * ( -Smatrix[5][ie] * cos(2.*(chi))+
-                                    Smatrix[8][ie] * sin(2.*(chi)) );
-    var[ie] = 0.;   
+                  pol_deg * ( Smatrix[5][ie] * cos(2.*(chi))+
+                              Smatrix[8][ie] * sin(2.*(chi)) );
+    var[ie] = 0.;
                               
     // far[ie] = ( 1. + pol_deg ) * Smatrix[0][ie] - pol_deg * Smatrix[3][ie];
     // qar[ie] = ( 1. + pol_deg ) * Smatrix[1][ie] - pol_deg * Smatrix[4][ie];
